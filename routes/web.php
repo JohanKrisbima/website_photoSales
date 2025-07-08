@@ -10,7 +10,7 @@ Route::get('/', function () {
 Route::get('/login',[UserController::class,'login'])->name('login');
 Route::post('login',[UserController::class,'logincheck'])->name('logincheck');
 
-Route::get('/register',[UserController::class, 'register'])->name('signup');
+Route::get('/register',[UserController::class, 'register'])->name('register');
 Route::post('register', [UserController::class, 'registercheck'])->name('registercheck');
 
 Route::get('/home',[UserController::class,'goHome'])->name('home');

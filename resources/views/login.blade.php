@@ -39,7 +39,17 @@
             <form action="{{ route('logincheck') }}" method="POST">
                 @csrf
                 <input type="email" name="email" class="border rounded-xl  w-[45vh] h-[50px] p-2 shadow-xl/20 ml-[8vh] " placeholder="Masukan Email" required>
-                <input type="password" name="password" class="border rounded-xl  w-[45vh] h-[50px] p-2 shadow-xl/20 ml-[8vh] mt-7" placeholder="Masukan Password" required>
+                <div class="relative w-[45vh] ml-[8vh] mt-7">
+                    <input type="password" id="password" name="password"
+                        class="border rounded-xl w-full h-[50px] p-2 pr-10 shadow-xl/20"
+                        placeholder="Masukan Password" required>
+                    
+                    <!-- Ikon mata -->
+                    <span onclick="togglePassword()"
+                        class="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer text-gray-500">
+                        👁️
+                    </span>
+                </div>
                 <button name="Login" type="submit" class="border rounded-xl w-[45vh] h-[50px] p-2 shadow-xl/20 mt-7 ml-[8vh] cursor-pointer bg-black text-white  hover:bg-white hover:text-black">Login</button>    
             </form>
             
@@ -49,6 +59,13 @@
             
         </div>
     </div>
+    
+     <script>
+        function togglePassword(){
+            const input = document.getElementById("password");
+            input.type = input.type === "password" ? "text" : "password";
+        }
+    </script>
     
 </body>
 </html>

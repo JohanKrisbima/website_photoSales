@@ -13,7 +13,7 @@ class UserController extends Controller
         if(Auth::check()){
             return redirect()->route('home');
         }else{
-            return view('login');
+            return view('/login');
         }
     }
 
@@ -22,7 +22,7 @@ class UserController extends Controller
             return redirect()->route('home');
         }
         else{
-            return view('register');
+            return view('/register');
         }
         
     }
@@ -50,7 +50,7 @@ class UserController extends Controller
 
         $user = User::Create($validation);
 
-        Auth::login($user);
+        // Auth::login($user);
 
         return redirect()->route('login');
     }

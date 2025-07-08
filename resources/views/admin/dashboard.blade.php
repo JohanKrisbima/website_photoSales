@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home Admin</title>
+    <title>Dashboard Admin</title>
      @vite('resources/css/app.css')
 </head>
 <body class="flex bg-gray-100 min-h-screen">
@@ -12,7 +12,7 @@
     <aside class="w-64 bg-stone-950 text-white flex flex-col p-4">
         <h1 class="text-2xl font-bold mb-6">Admin</h1>
         <nav class="space-y-2">
-            <a href="/home" class="block p-2 rounded bg-teal-50 text-stone-950">Dashboard</a>
+            <a href="/dashboard" class="block p-2 rounded bg-teal-50 text-stone-950">Dashboard</a>
             <a href="/galeriAdmin" class="block p-2 rounded hover:bg-teal-50 hover:text-stone-950">Galeri Foto</a>
         </nav>
         <div class="mt-auto">

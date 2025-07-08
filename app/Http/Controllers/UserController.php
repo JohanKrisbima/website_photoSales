@@ -11,7 +11,7 @@ class UserController extends Controller
     //
     public function login(){
         if(Auth::check()){
-            return redirect()->route('home');
+            return redirect()->route('dashboard');
         }else{
             return view('login');
         }
@@ -19,7 +19,7 @@ class UserController extends Controller
 
     public function register(){
         if(Auth::check()){
-            return redirect()->route('home');
+            return redirect()->route('dashboard');
         }
         else{
             return view('register');
@@ -34,7 +34,7 @@ class UserController extends Controller
         ]);
 
         if(Auth::attempt($credential)){
-            return redirect()->route('home');
+            return redirect()->route('dashboard');
         }else{
             return redirect()->route('login')->with('loginError', 'Email atau kata sandi salah');
         }
@@ -55,11 +55,11 @@ class UserController extends Controller
         return redirect()->route('login');
     }
 
-    public function goHome(){
+    public function goDashboard(){
         if(Auth::check() && Auth::user()->usertype=='admin'){
-            return view('admin.home');
+            return view('admin.dashboard');
         }else if(Auth::check() && Auth::user()->usertype=='user'){
-            return view('home');
+            return view('dashboard');
         }else{
             return redirect()->route('login');
         }

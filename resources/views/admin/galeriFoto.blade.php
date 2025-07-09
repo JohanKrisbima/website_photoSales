@@ -27,7 +27,7 @@
             <img src="{{ asset('assets/image/admin.png') }}" alt="user" class="rounded-full w-10 h-10">
         </header>
 
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 ml-6 rounded-lg text-sm-2 mt-5">Tambah Data</button>
+        <a href="/admin/input"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 ml-6 rounded-lg text-sm-2 mt-3">Tambah Data</button></a>
 
         {{-- table --}}
         <div class="overflow-x-auto mt-4">
@@ -43,17 +43,36 @@
                     </tr>
                 </thead>
                 <tbody class="text-gray-600 text-sm font-light">
+                    @foreach($photos as $index => $photo)
                     <tr class="border-b border-gray-200 hover:bg-gray-50">
-                        <td class="py-3 px-6 text-left whitespace-nowrap">1</td>
-                        <td class="py-3 px-6 text-left "><img src="{{ asset('assets/imageProduct/ngabers.png') }}" alt="picture" class="w-60 h-50"></td>
-                        <td class="py-3 px-6 text-left ">Foto Kenangan</td>
-                        <td class="py-3 px-6 text-left ">jumat, 12 April 2025</td>
-                        <td class="py-3 px-6 text-left ">Rp, 20.000</td>
+                        
+                        <td class="py-3 px-6 text-left whitespace-nowrap">{{ $index +1 }}</td>
+                        <td class="py-3 px-6 text-left ">
+                            <div class="relative inline-block w-60 h-auto">
+                            <img src="{{ asset('assets/imageProduct/' . $photo->image) }}" 
+                                alt="picture" 
+                                class="w-60 h-50 object-cover"
+                                oncontextmenu="return false;"  
+                                ondragstart="return false;" 
+                                onmousedown="return false;" 
+                                style="pointer-events: none; user-select: none;">
+
+                            <!-- Watermark Gambar -->
+                            <img src="{{ asset('assets/imageProduct/povshot.png')}}" 
+                                alt="watermark" 
+                                class="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-10 opacity-50 pointer-events-none select-none">
+                            </div>
+                        </td>
+                        <td class="py-3 px-6 text-left ">{{ $photo->title }}</td>
+                        <td class="py-3 px-6 text-left ">{{ $photo->description }}</td>
+                        <td class="py-3 px-6 text-left ">Rp, {{ $photo->price }}</td>
                         <td class="py-3 px-6 text-center">
                             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-sm">Edit</button>
                             <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-sm ml-2">Hapus</button>
                         </td>
+                       
                     </tr>
+                     @endforeach
                 </tbody>
             </table>
         </div>

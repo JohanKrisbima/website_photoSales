@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,6 @@ Route::get('/dashboard',[UserController::class,'goDashboard'])->name('dashboard'
 
 Route::get('/logout', [UserController::class,'logout'])->name('logout');
 
-Route::get('/galeriAdmin', function(){
-    return view('admin.galeriFoto');
-});
+Route::get('/galeriAdmin',[PhotoController::class, 'index'])->name('galeriAdmin');
+Route::get('/admin/input',[PhotoController::class,'input'])->name('inputPhoto');
+Route::post('/admin/storePhoto',[PhotoController::class,'store'])->name('storePhoto');

@@ -14,11 +14,10 @@
 
 </head>
 <body style="background-image: url('{{ asset('assets/image/bgphoto2.jpg')}}'); background-size: cover;" >
-    @if(@session('loginError')){
+    @if(@session('loginError'))
         <script>
             alert(`{{ session('loginError') }}`);
         </script>
-    }
     @endif
 
     <div class="container w-full max-w-md h-[80vh] bg-gray-100 flex items-start justify-center mx-auto mt-20  rounded-2xl  shadow-lg shadow-cyan-500/50">

@@ -8,6 +8,24 @@
      @vite('resources/css/app.css')
 </head>
 <body class="flex bg-gray-100 min-h-screen">
+    @if(@session('successUpload'))
+        <script>
+            alert(`{{ session('successUpload') }}`);
+        </script>
+    @endif
+
+    @if(@session('successDelete'))
+        <script>
+            alert(`{{ session('successDelete') }}`);
+        </script>
+    @endif
+
+    @if(@session('successUpdate'))
+        <script>
+            alert(`{{ session('successUpdate') }}`);
+        </script>
+    @endif
+
     {{-- side bar --}}
     <aside class="w-64 bg-stone-950 text-white flex flex-col p-4">
         <h1 class="text-2xl font-bold mb-6">Admin</h1>
@@ -27,7 +45,7 @@
             <img src="{{ asset('assets/image/admin.png') }}" alt="user" class="rounded-full w-10 h-10">
         </header>
 
-        <a href="/admin/input"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 ml-6 rounded-lg text-sm-2 mt-3">Tambah Data</button></a>
+        <a href="/admin/input"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 ml-6 rounded-lg text-sm-2 mt-3 cursor-pointer">Tambah Data</button></a>
 
         {{-- table --}}
         <div class="overflow-x-auto mt-4">
@@ -51,7 +69,7 @@
                             <div class="relative inline-block w-60 h-auto">
                             <img src="{{ asset('assets/imageProduct/' . $photo->image) }}" 
                                 alt="picture" 
-                                class="w-60 h-50 object-cover"
+                                class="w-60 h-40 object-cover"
                                 oncontextmenu="return false;"  
                                 ondragstart="return false;" 
                                 onmousedown="return false;" 
@@ -67,8 +85,14 @@
                         <td class="py-3 px-6 text-left ">{{ $photo->description }}</td>
                         <td class="py-3 px-6 text-left ">Rp, {{ $photo->price }}</td>
                         <td class="py-3 px-6 text-center">
-                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-sm">Edit</button>
-                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-sm ml-2">Hapus</button>
+                            <div class="flex justify-center items-center">
+                                <a href="{{ route('editPhoto', $photo->id) }}"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-sm cursor-pointer">Edit</button></a>
+                                <form action="{{ route('photoDestroy', $photo->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-sm ml-2 cursor-pointer">Hapus</button>
+                                </form>
+                            </div>
                         </td>
                        
                     </tr>

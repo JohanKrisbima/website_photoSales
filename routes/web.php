@@ -6,7 +6,13 @@ use App\Models\Photo;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('dashboard');
+    $title = "dashboard";
+    return view('dashboard', compact('title'));
+});
+
+Route::get('/galeri', function () {
+    $title = "galeri";
+    return view('galeri', compact('title'));
 });
 
 Route::get('/login',[UserController::class,'login'])->name('login');

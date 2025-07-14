@@ -30,7 +30,7 @@
         <div class="grid grid-cols-2 gap-6">
             <div class="bg-white p-4 rounded shadow ml-10">
                 <h3 class="font-semibold">Jumlah Foto</h3>
-                <h1>100</h1>
+                <h1>{{ $jumlahPhoto }}</h1>
             </div>
 
             <div class="bg-white p-4 rounded shadow mr-10">

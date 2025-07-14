@@ -1,3 +1,8 @@
-ini halaman utama user
+@extends('layouts.main')
 
-<a href="{{ route('logout') }}">Logout</a>
+@section('title', 'Dashboard')
+
+@section('content')
+    <h1>Ini Halaman Dashboard</h1>
+
+@endsection

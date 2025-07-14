@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Photo;
 
 class UserController extends Controller
 {
@@ -57,9 +58,11 @@ class UserController extends Controller
 
     public function goDashboard(){
         if(Auth::check() && Auth::user()->usertype=='admin'){
-            return view('admin.dashboard');
+            $jumlahPhoto = Photo::count();
+            return view('admin.dashboard', compact('jumlahPhoto'));
         }else if(Auth::check() && Auth::user()->usertype=='user'){
-            return view('dashboard');
+            $title = "dashboard";
+            return view('dashboard', compact('title'));
         }else{
             return redirect()->route('login');
         }
